@@ -1,18 +1,27 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 
-const doTranslation = async (input, languageCode, cancelToken) => {
-  try {
-    const { data } = await axios.post(
-      "https://translation.googleapis.com/language/translate/v2?key=AIzaSyCf0Xy0OnhxlduyEt3K8zP-sOuu-l_u6uA",
-      {
-        q: input,
-        target: languageCode
-      },
-      { cancelToken: cancelToken.token }
-    );
+const DICTIONARY_API_URL = "https://dictionary.yandex.net/api/v1/dicservice.json/lookup";
+const DICTIONARY_API_KEY = process.env.REACT_APP_YANDEX_DICT_KEY;
 
-    return data.data.translations[0].translatedText;
+const doTranslation = async (input, languageCode, cancelToken) => {
+  if (!DICTIONARY_API_KEY) {
+    return "";
+  }
+
+  try {
+    const { data } = await axios.post(DICTIONARY_API_URL, null, {
+      params: {
+        key: DICTIONARY_API_KEY,
+        lang: `ru-${languageCode}`,
+        text: input
+      },
+      cancelToken: cancelToken.token
+    });
+
+    const translation = data.def && data.def[0] && data.def[0].tr && data.def[0].tr[0];
+
+    return translation ? translation.text : "";
   } catch (err) {
     return "";
   }

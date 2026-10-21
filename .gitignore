@@ -1,3 +1,8 @@
 .DS_Store
 node_modules/
 /build
+
+# ключи API
+.env
+.env.local
+.env.*.local

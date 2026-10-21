@@ -2,17 +2,18 @@
 import React, { useState } from "react";
 
 const LANGUAGES = [
-  { label: "Afrikaans", value: "af" },
-  { label: "Arabic", value: "ar" },
-  { label: "French", value: "fr" },
-  { label: "Hindi", value: "hi" },
-  { label: "Japanese", value: "ja" },
-  { label: "Portuguese", value: "pt" },
   { label: "English", value: "en" },
-  { label: "Simplified Chinese", value: "zh-CN" },
+  { label: "German", value: "de" },
+  { label: "French", value: "fr" },
   { label: "Spanish", value: "es" },
-  { label: "Swahili", value: "sw" },
-  { label: "Thai", value: "th" }
+  { label: "Italian", value: "it" },
+  { label: "Portuguese", value: "pt" },
+  { label: "Chinese", value: "zh" },
+  { label: "Turkish", value: "tr" },
+  { label: "Polish", value: "pl" },
+  { label: "Ukrainian", value: "uk" },
+  { label: "Czech", value: "cs" },
+  { label: "Dutch", value: "nl" }
 ];
 
 const Languages = ({ language, onLanguageChange }) => {
